@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.linxin666.org/dsh-skin/v2.json",
+  "skinManifestVersion": 2,
+  "id": "frost",
+  "name": "霜白",
+  "nameEn": "Frost",
+  "version": "0.1.0",
+  "author": "NanBei.W",
+  "tagline": "霜白纸面 · 石墨主色 · 克制层次 · 亮暗双主题",
+  "description": "《霜白》是一套安静、精致的 DSH 工作区主题。浅色以霜白画布、纯白内容面和近黑石墨文字建立清晰层次，主按钮采用石墨黑；深色延续同一套中性灰阶，以冷石墨表面和反白主操作保持一致的阅读节奏。没有背景插画、彩色品牌装饰或运行时脚本，细节集中在发丝边框、柔和阴影、输入聚焦、滚动条与文本选择。",
+  "tags": [
+    "frost",
+    "white",
+    "graphite",
+    "minimal",
+    "light",
+    "dark",
+    "css-only"
+  ],
+  "accent": "#1f1f1f",
+  "order": 80,
+  "license": "MIT",
+  "licenseUrl": "https://github.com/wnanbei/dsh-theme-frost/blob/main/LICENSE",
+  "preview": {
+    "light": "preview/light.jpg",
+    "dark": "preview/dark.jpg"
+  },
+  "contributes": {
+    "stylesheet": "skin.css",
+    "patches": "patches.css"
+  }
+}

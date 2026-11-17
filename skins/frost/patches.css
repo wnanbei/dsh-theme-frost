@@ -1,0 +1,155 @@
+/* ==========================================================================
+ * Frost — L3 semantic refinements
+ *
+ * Only details the token layer cannot express. Selectors use stable semantic
+ * attributes and roles, never generated CSS-module class fragments. The loader
+ * scopes every rule under html[data-dsh-skin="frost"].
+ * ======================================================================== */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  accent-color: var(--dsw-alias-brand-primary);
+  caret-color: var(--dsw-alias-label-primary);
+}
+
+/* The canvas must not cover its own neutral base with a host background. */
+[id="root"] {
+  background: var(--dsw-alias-bg-base);
+}
+
+/* Content surfaces are separated by quiet hairlines rather than extra cards. */
+[data-dsh-surface="sidebar"] {
+  border-right: 1px solid var(--dsw-alias-border-l1);
+  font-size: 12px;
+}
+
+/* Slightly tighter sidebar type; section labels and metadata stay quieter. */
+[data-dsh-surface="sidebar"] :is(button, [role="treeitem"], [role="button"], p, span) {
+  font-size: 12px;
+}
+
+[data-dsh-surface="sidebar"] :is(time, small) {
+  font-size: 11px;
+}
+
+[data-dsh-surface="session-header"] {
+  border-bottom-color: var(--dsw-alias-border-l1);
+}
+
+[data-dsh-surface="details"] {
+  border-left-color: var(--dsw-alias-border-l1);
+}
+
+/* A composed input: white paper in light mode, raised graphite in dark mode. */
+[data-composer-card],
+[data-dsh-surface="composer"] [data-dsh-part="composer-input"] {
+  border-color: var(--dsw-alias-border-l2);
+  box-shadow: var(--dsw-shadow-lv1);
+}
+
+[data-composer-card] {
+  border-radius: 16px;
+  transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+}
+
+[data-composer-card]:focus-within {
+  border-color: var(--dsw-alias-border-l4);
+  box-shadow: 0 0 0 3px var(--dsw-alias-interactive-bg-active);
+}
+
+/* Tool output is content, not a second decorative card stack. */
+[data-chat-flow-kind="tool-call"],
+[data-chat-flow-kind="workflow-run"] {
+  border-color: var(--dsw-alias-border-l1);
+  border-radius: 12px;
+}
+
+/* Floating surfaces carry one soft shadow and one fine edge. */
+[role="dialog"],
+[role="menu"],
+[role="listbox"],
+[data-dsh-surface="overlay"] {
+  border: 1px solid var(--dsw-alias-border-l2);
+  box-shadow: var(--dsw-shadow-lv3);
+}
+
+[role="dialog"] {
+  border-radius: 16px;
+}
+
+[role="menu"],
+[role="listbox"] {
+  border-radius: 12px;
+}
+
+[role="tooltip"] {
+  border-radius: 6px;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+/* Keyboard focus remains visible without introducing a second accent. */
+:focus-visible {
+  outline: var(--dsw-focus-ring-width) solid var(--dsw-focus-ring-color);
+  outline-offset: 2px;
+}
+
+:is(a, button, input, textarea, [contenteditable="true"]):focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Links are identified by ink weight and underline, not an unrelated hue. */
+a {
+  color: var(--dsw-alias-link);
+  text-decoration-color: var(--dsw-alias-border-l4);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Native browser surfaces belong to the palette too. */
+::selection {
+  color: var(--dsw-alias-label-primary);
+  background: var(--dsw-alias-bg-document-selection);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dsw-alias-scrollbar-bg-l2);
+  border: 3px solid transparent;
+  border-radius: 8px;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dsw-alias-scrollbar-hover-l2);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Code stays code, including within prose and citations. */
+:is(code, pre, kbd, samp) {
+  font-variant-ligatures: none;
+}
+
+/* No global animation is introduced; existing transitions also respect this. */
+@media (prefers-reduced-motion: reduce) {
+  [data-composer-card] {
+    transition: none;
+  }
+}
